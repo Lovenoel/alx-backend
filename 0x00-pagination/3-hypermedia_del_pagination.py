@@ -51,7 +51,11 @@ class Server:
             current_index += 1
 
         # Define the next index after the current page
-        next_index = current_index if current_index < len(indexed_data) else None
+        # next_index = current_index
+        if current_index < len(indexed_data):
+            next_index = current_index
+        else:
+            None
 
         # Return the pagination details as a dictionary
         return {
