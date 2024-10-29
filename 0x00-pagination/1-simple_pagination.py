@@ -5,7 +5,7 @@ Simple pagination for server data.
 
 import csv
 from typing import List, Tuple
-index_range = __import__(0-simple_helper_function).index_range
+index_range = __import__('0-simple_helper_function').index_range
 
 
 class Server:
