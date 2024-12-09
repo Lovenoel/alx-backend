@@ -62,11 +62,15 @@ app.get("/reserve_seat", async (req, res) => {
 });
 
 
-/*
-Processes the queue, decreases available seats, and checks
-if the reservation should be enabled or disabled based on
-seat availability.
-*/
+/**
+ * Handles the reservation queue:
+ * - Processes each job in the queue to decrement the available seat count.
+ * - Updates the seat availability in Redis.
+ * - If no seats remain (availableSeats reaches 0), disables further reservations by setting `reservationEnabled` to false.
+ * - Logs the success or failure of each reservation job:
+ *   - On success: Logs the job ID and marks it as completed.
+ *   - On failure: Logs the error and fails the job with an appropriate message.
+ */
 app.get("/process", async (req, res) => {
   res.json({ status: "Queue processing" });
 
